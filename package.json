@@ -1,41 +1,63 @@
 {
-  "name": "bpmn-modeler",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
-  },
-  "dependencies": {
-    "core-js": "^3.4.4",
-    "vue": "^2.6.10"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.1.0",
-    "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-service": "^4.1.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
+    "name": "bpmn-modeler",
+    "version": "0.1.0",
+    "main": "./dist/bpmn-modeler.common.js",
+    "license": "MIT",
+    "keywords": [
+        "@iota",
+        "vue",
+        "components",
+        "bpmn-viewer",
+        "bpmn-modeler",
+        "modeler"
     ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+    "scripts": {
+        "serve": "vue-cli-service serve ./examples/main.js",
+        "lib": "vue-cli-service build --target lib --name bpmn-modeler ./src/index.js",
+        "prepublish": "npm run lib",
+        "lint": "vue-cli-service lint"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:iota-cn/vue-iota-avatar.git"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "^4.1.1",
+        "@vue/cli-plugin-eslint": "^4.1.1",
+        "@vue/cli-service": "^4.1.1",
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.0.1",
+        "stylus": "^0.54.7",
+        "stylus-loader": "^3.0.2",
+        "vue": "^3.6.10",
+        "vue-template-compiler": "^2.6.11",
+        "webpack-bundle-analyzer": "^3.6.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {
+            "no-console": "off"
+        },
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions"
+    ]
 }

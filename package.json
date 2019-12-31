@@ -21,7 +21,10 @@
         "type": "git",
         "url": "git@github.com:iota-cn/vue-iota-avatar.git"
     },
-    "dependencies": {},
+    "dependencies": {
+        "bpmn-js": "^6.1.1",
+        "bpmn-js-properties-panel": "^0.33.1"
+    },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.1.1",
         "@vue/cli-plugin-eslint": "^4.1.1",

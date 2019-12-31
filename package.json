@@ -23,7 +23,9 @@
     },
     "dependencies": {
         "bpmn-js": "^6.1.1",
-        "bpmn-js-properties-panel": "^0.33.1"
+        "bpmn-js-properties-panel": "^0.33.1",
+        "less": "^3.10.3",
+        "less-loader": "^5.0.0"
     },
     "devDependencies": {
         "@vue/cli-plugin-babel": "^4.1.1",

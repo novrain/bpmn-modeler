@@ -2,6 +2,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
     configureWebpack: {
-        plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })]
+        plugins: [new BundleAnalyzerPlugin({ analyzerMode: 'static', openAnalyzer: false })],
+        externals: {
+            'bpmn-js': 'BpmnJS',
+        }
     }
 }

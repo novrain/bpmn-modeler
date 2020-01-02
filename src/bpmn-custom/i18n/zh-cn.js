@@ -102,7 +102,7 @@ export default {
     // Errors
     'no parent for {element} in {parent}': '在 {element} 中没有父元素 {parent}',
     'no shape type specified': '未指定形状类型',
-    'flow elements must be children of pools/participants': '元素必须是池/参与者的子级',
+    'flow elements must be children of pools/participants': '元素必须在池/通道中',
     'out of bounds release': '越界释放',
     'more than {count} child lanes': '超过 {count} 条通道',
     'element required': '需要元素',
@@ -252,5 +252,12 @@ export default {
     'In Mapping': '',
     'Out Mapping': '',
     'Target': '',
-    'Local': ''
+    'Local': '',
+
+    'Must provide either loop cardinality or collection': '',
+    'Loop Cardinality': '',
+    'Collection': '',
+    'Element Variable': '',
+    'Completion Condition': '',
+
 };

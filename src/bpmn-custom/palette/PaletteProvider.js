@@ -155,12 +155,12 @@ PaletteProvider.prototype.getPaletteEntries = function () {
             translate('Create EndEvent')
         ),
         'create.exclusive-gateway': createAction(
-            'bpmn:ExclusiveGateway', 'gateway', 'bpmn-icon-gateway-none',
+            'bpmn:ExclusiveGateway', 'gateway', 'bpmn-icon-gateway-xor',
             translate('Create Gateway')
         ),
-        'create.task': createAction(
-            'bpmn:Task', 'activity', 'bpmn-icon-task',
-            translate('Create Task')
+        'create.userTask': createAction(
+            'bpmn:UserTask', 'activity', 'bpmn-icon-user-task',
+            translate('Create UserTask')
         ),
         // 'create.data-object': createAction(
         //   'bpmn:DataObjectReference', 'data-object', 'bpmn-icon-data-object',

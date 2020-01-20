@@ -6,6 +6,9 @@ export default function translate(template, replacements) {
     replacements = replacements || {}
 
     // Translate
+    if (!zhCN[template])
+        console.log(template)
+
     template = locale === 'zh-cn' ? zhCN[template] || template : template
 
     // Replace

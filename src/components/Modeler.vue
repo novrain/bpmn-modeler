@@ -36,7 +36,7 @@
             <li class="divider">
                 <button type="button"
                     title="redo"
-                    :disabled='!loaded||commandStack._stackIdx === commandStack._stack.length-1'
+                    :disabled='!loaded||!commandStack||commandStack._stackIdx === commandStack._stack.length-1'
                     @click='onRedo'>
                     <i class='redo' />
                 </button>
@@ -145,7 +145,7 @@ export default {
                 let that = this
                 this.modeler.importXML(this.innerXML, function (err) {
                     if (err) {
-                        that.$emit('error', err)
+                        that.$emit('load-error', err)
                     } else {
                         that.loaded = true
                         that.commandStack = that.modeler.get('commandStack')
@@ -165,18 +165,30 @@ export default {
             this.$refs._fileInput.addEventListener('change', function () {
                 let files = that.$refs._fileInput.files
                 const reader = new FileReader()
-                let data = ''
                 reader.readAsText(files[0])
                 reader.onload = function (event) {
-                    data = event.target.result
-                    that.innerXML = data
+                    that.loaded = false
+                    try {
+                        let data = event.target.result
+                        let parser = new DOMParser()
+                        let doc = parser.parseFromString(data, "text/xml")
+                        let process = doc.querySelector('process')
+                        if (!process) {
+                            that.$emit('parse-error', new Error('invalid xml file'))
+                            return
+                        }
+                        that.innerXML = data
+                        that.loaded = true
+                    } catch (err) {
+                        that.$emit('parse-error', err)
+                    }
                 }
             })
         },
         onSave() {
             this.modeler.saveXML({ format: true }, (err, xml) => {
                 if (err) {
-                    this.$emit('error', err)
+                    this.$emit('save-error', err)
                 } else {
                     this.$emit('save', xml)
                 }
@@ -201,7 +213,7 @@ export default {
             this.modeler.get('canvas').zoom(this.scale)
         },
         onFit() {
-            this.modeler.get('canvas').zoom('fit-viewport')
+            this.scale = this.modeler.get('canvas').zoom('fit-viewport')
         }
     },
     computed: {
@@ -228,6 +240,7 @@ export default {
 .modeler {
     width: 100%;
     height: 100%;
+    position: relative;
 
     .custom-toolbar {
         position: absolute;
@@ -318,17 +331,12 @@ export default {
 
     /deep/ .bjs-container {
         .djs-palette {
-            background: none;
-            width: auto;
+            background-color: white;
+            width: 48px;
 
             .djs-palette-entries {
-                display: flex;
-
                 .group:first-child {
-                    border-right: 1px solid #cccccc;
-
                     hr {
-                        display: none;
                     }
                 }
 
